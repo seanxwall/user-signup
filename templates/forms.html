@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% macro render_field(field) %}
+
+   {{ field.label }}
+
+   {{ field(**kwargs)|safe }}
+
+   {% if field.errors %}
+
+       {% for error in field.errors %}
+
+           <span class="help-inline">{{ error }}</span>
+
+       {% endfor %}
+
+   {% endif %}
+
+{% endmacro %}
+{% if username != ''%}
+    {{ username }}
+{% endif %}
+<form method="post" name="register">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <label for="username">Username</label>
+                </td>
+                <td>
+                    <input name="username" value="" type="text">
+                    <span class="error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="password">Password</label>
+                </td>
+                <td>
+                    <input name="password" type="password">
+                    <span class="error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="verify">Verify Password</label>
+                </td>
+                <td>
+                    <input name="verify" type="password">
+                    <span class="error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">Email (optional)</label>
+                </td>
+                <td>
+                    <input name="email" value="">
+                    <span class="error"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="submit">
+</form>
+{% if error %}
+<p class='error'>{{ error }}</p>
+{% endif %}
+{% endblock %}
