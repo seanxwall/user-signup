@@ -1,5 +1,4 @@
-from flask import Flask, request, render_template, redirect
-#from flask_wtf import form, StringField
+from flask import Flask, request, render_template
 import cgi
 
 app = Flask(__name__)
@@ -55,7 +54,6 @@ def forms():
         # render the page again with errors if error_code is True
         if error_code == True:
             return render_template('forms.html', username=username, email=email, error_code=error_code, user_error=user_error, password_error=password_error, verify_error=verify_error, email_error=email_error)
-            return render_template('forms.html')
         else:
             return render_template('welcome.html', username=username)
     
